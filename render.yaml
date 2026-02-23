@@ -1,5 +1,4 @@
 services:
-  # Backend API Service
   - type: web
     name: urban-pulse-api
     env: python
