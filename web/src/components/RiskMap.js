@@ -23,7 +23,7 @@ function RiskMap() {
 
   useEffect(() => {
     fetchZones();
-  }, []);
+  }, [filter]);
 
   const fetchZones = async () => {
     setLoading(true);

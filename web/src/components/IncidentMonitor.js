@@ -12,7 +12,7 @@ function IncidentMonitor() {
 
   useEffect(() => {
     fetchIncidentData();
-  }, [timeRange]);
+  }, [timeRange, sortBy]);
 
   const fetchIncidentData = async () => {
     setLoading(true);
