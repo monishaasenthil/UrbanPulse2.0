@@ -1,0 +1,36 @@
+# Urban Pulse 2.0 - Dependencies
+# Data Processing
+pandas>=2.0.0
+numpy>=1.24.0
+h3>=3.7.6
+
+# API & Web
+requests>=2.31.0
+flask>=3.0.0
+flask-cors>=4.0.0
+
+# Machine Learning
+scikit-learn>=1.3.0
+xgboost>=2.0.0
+tensorflow>=2.15.0
+keras>=3.0.0
+
+# Explainability
+shap>=0.44.0
+
+# Visualization
+matplotlib>=3.8.0
+seaborn>=0.13.0
+plotly>=5.18.0
+
+# Graph Processing
+networkx>=3.2.0
+
+# Utilities
+python-dateutil>=2.8.2
+pytz>=2024.1
+joblib>=1.3.0
+tqdm>=4.66.0
+
+# Database (optional - for persistence)
+sqlalchemy>=2.0.0
