@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Navigation, Search, Route } from 'lucide-react';
+import { Navigation, Search as SearchIcon, Route as RouteIcon } from 'lucide-react';
 
 const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
 
@@ -100,7 +100,7 @@ function EmergencyRouting() {
               disabled={loading || !incidentLocation}
               className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-slate-600 py-2 rounded-lg flex items-center justify-center space-x-2"
             >
-              <Search className="w-4 h-4" />
+              <SearchIcon className="w-4 h-4" />
               <span>{loading ? 'Finding Route...' : 'Find Route'}</span>
             </button>
           </div>
@@ -219,7 +219,7 @@ function EmergencyRouting() {
             {recentRoutes.map((route, idx) => (
               <div key={idx} className="flex items-center justify-between p-3 bg-slate-700/30 rounded-lg">
                 <div className="flex items-center space-x-4">
-                  <Route className="w-5 h-5 text-blue-400" />
+                  <RouteIcon className="w-5 h-5 text-blue-400" />
                   <div>
                     <p className="text-sm">{route.incident_location} → {route.destination_name}</p>
                     <p className="text-xs text-slate-400">{route.estimated_zones} zones</p>
