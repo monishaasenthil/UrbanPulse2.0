@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Settings, Clock, ArrowUpDown, Play, Pause, RefreshCw } from 'lucide-react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Settings, Clock, ArrowUpDown, Play, RefreshCw } from 'lucide-react';
 
 const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
 
@@ -10,9 +10,9 @@ function SignalControl() {
 
   useEffect(() => {
     fetchSignalPlans();
-  }, []);
+  }, [fetchSignalPlans]);
 
-  const fetchSignalPlans = async () => {
+  const fetchSignalPlans = useCallback(async () => {
     setLoading(true);
     try {
       const response = await fetch(`${API_BASE}/decisions/signals`);
@@ -24,7 +24,7 @@ function SignalControl() {
       setSignals(generateDemoSignals());
     }
     setLoading(false);
-  };
+  }, [API_BASE]);
 
   const generateDemoSignals = () => {
     return Array.from({ length: 20 }, (_, i) => ({

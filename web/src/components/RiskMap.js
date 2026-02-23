@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { MapContainer, TileLayer, CircleMarker, Popup, useMap } from 'react-leaflet';
-import { RefreshCw, Filter, Layers } from 'lucide-react';
+import { RefreshCw, Layers } from 'lucide-react';
 
 const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
 
@@ -23,9 +23,9 @@ function RiskMap() {
 
   useEffect(() => {
     fetchZones();
-  }, [filter]);
+  }, [filter, fetchZones]);
 
-  const fetchZones = async () => {
+  const fetchZones = useCallback(async () => {
     setLoading(true);
     try {
       const response = await fetch(`${API_BASE}/risk/zones`);
@@ -37,7 +37,7 @@ function RiskMap() {
       setZones(generateDemoZones());
     }
     setLoading(false);
-  };
+  }, [API_BASE]);
 
   const generateDemoZones = () => {
     const zones = [];

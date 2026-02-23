@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { AlertTriangle, Clock, MapPin, TrendingUp, Filter } from 'lucide-react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { AlertTriangle, Clock, MapPin, TrendingUp } from 'lucide-react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
@@ -12,9 +12,9 @@ function IncidentMonitor() {
 
   useEffect(() => {
     fetchIncidentData();
-  }, [timeRange, sortBy]);
+  }, [timeRange, sortBy, fetchIncidentData]);
 
-  const fetchIncidentData = async () => {
+  const fetchIncidentData = useCallback(async () => {
     setLoading(true);
     try {
       const response = await fetch(`${API_BASE}/risk/zones`);
@@ -26,7 +26,7 @@ function IncidentMonitor() {
       setZones(generateDemoIncidents());
     }
     setLoading(false);
-  };
+  }, [API_BASE]);
 
   const generateDemoIncidents = () => {
     return Array.from({ length: 30 }, (_, i) => ({

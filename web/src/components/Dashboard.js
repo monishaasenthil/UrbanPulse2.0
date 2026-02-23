@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { 
   AlertTriangle, Activity, MapPin, TrendingUp, 
-  Shield, Clock, Zap, Users
+  Shield, Zap, Users
 } from 'lucide-react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar, PieChart, Pie, Cell } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 
 const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
 

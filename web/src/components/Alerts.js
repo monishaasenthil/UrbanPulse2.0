@@ -1,19 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { Bell, AlertTriangle, CheckCircle, Clock, Filter, X } from 'lucide-react';
+import { Bell, AlertTriangle, CheckCircle, Clock, X } from 'lucide-react';
 
 const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
 
 function Alerts() {
   const [alerts, setAlerts] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('all');
 
   useEffect(() => {
     fetchAlerts();
-  }, []);
+  }, [filter]);
 
   const fetchAlerts = async () => {
-    setLoading(true);
     try {
       const response = await fetch(`${API_BASE}/alerts`);
       const data = await response.json();
@@ -22,7 +20,6 @@ function Alerts() {
       console.error('Failed to fetch alerts:', error);
       setAlerts(generateDemoAlerts());
     }
-    setLoading(false);
   };
 
   const generateDemoAlerts = () => {

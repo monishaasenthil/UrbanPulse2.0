@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { 
-  LayoutDashboard, Map, AlertTriangle, Navigation, 
+  LayoutDashboard, Map, Navigation, 
   Settings, Activity, Brain, RefreshCw, Bell
 } from 'lucide-react';
 import Dashboard from './components/Dashboard';
@@ -103,7 +103,6 @@ function Header({ onRefresh, isLoading }) {
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
-  const [lastUpdate, setLastUpdate] = useState(null);
 
   const handleRefresh = async () => {
     setIsLoading(true);
@@ -115,7 +114,7 @@ function App() {
       });
       const data = await response.json();
       if (data.status === 'success') {
-        setLastUpdate(new Date());
+        // Refresh successful
       }
     } catch (error) {
       console.error('Refresh failed:', error);
