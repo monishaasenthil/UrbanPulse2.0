@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Navigation, Clock, AlertTriangle, Users, Search, Route } from 'lucide-react';
+import React, { useState } from 'react';
+import { Navigation, Search, Route } from 'lucide-react';
 
 const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
 

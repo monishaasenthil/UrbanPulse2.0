@@ -8,10 +8,6 @@ function SignalControl() {
   const [loading, setLoading] = useState(true);
   const [summary, setSummary] = useState(null);
 
-  useEffect(() => {
-    fetchSignalPlans();
-  }, [fetchSignalPlans]);
-
   const fetchSignalPlans = useCallback(async () => {
     setLoading(true);
     try {
@@ -24,7 +20,11 @@ function SignalControl() {
       setSignals(generateDemoSignals());
     }
     setLoading(false);
-  }, [API_BASE]);
+  }, []);
+
+  useEffect(() => {
+    fetchSignalPlans();
+  }, [fetchSignalPlans]);
 
   const generateDemoSignals = () => {
     return Array.from({ length: 20 }, (_, i) => ({

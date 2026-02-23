@@ -6,16 +6,10 @@ const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
 
 function IncidentMonitor() {
   const [zones, setZones] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [sortBy, setSortBy] = useState('risk');
   const [timeRange, setTimeRange] = useState('24h');
 
-  useEffect(() => {
-    fetchIncidentData();
-  }, [timeRange, sortBy, fetchIncidentData]);
-
   const fetchIncidentData = useCallback(async () => {
-    setLoading(true);
     try {
       const response = await fetch(`${API_BASE}/risk/zones`);
       const data = await response.json();
@@ -25,8 +19,11 @@ function IncidentMonitor() {
       // Demo data
       setZones(generateDemoIncidents());
     }
-    setLoading(false);
-  }, [API_BASE]);
+  }, []);
+
+  useEffect(() => {
+    fetchIncidentData();
+  }, [timeRange, sortBy, fetchIncidentData]);
 
   const generateDemoIncidents = () => {
     return Array.from({ length: 30 }, (_, i) => ({

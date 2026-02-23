@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Bell, AlertTriangle, CheckCircle, Clock, X } from 'lucide-react';
 
 const API_BASE = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
@@ -9,9 +9,9 @@ function Alerts() {
 
   useEffect(() => {
     fetchAlerts();
-  }, [filter]);
+  }, [filter, fetchAlerts]);
 
-  const fetchAlerts = async () => {
+  const fetchAlerts = useCallback(async () => {
     try {
       const response = await fetch(`${API_BASE}/alerts`);
       const data = await response.json();
@@ -20,7 +20,7 @@ function Alerts() {
       console.error('Failed to fetch alerts:', error);
       setAlerts(generateDemoAlerts());
     }
-  };
+  }, []);
 
   const generateDemoAlerts = () => {
     const types = ['high_risk', 'elevated_risk', 'heavy_rain', 'incident_cluster', 'hospital_proximity'];

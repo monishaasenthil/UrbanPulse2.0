@@ -21,10 +21,6 @@ function RiskMap() {
   const [filter, setFilter] = useState('all');
   const [mapCenter] = useState([40.7128, -74.0060]);
 
-  useEffect(() => {
-    fetchZones();
-  }, [filter, fetchZones]);
-
   const fetchZones = useCallback(async () => {
     setLoading(true);
     try {
@@ -37,7 +33,11 @@ function RiskMap() {
       setZones(generateDemoZones());
     }
     setLoading(false);
-  }, [API_BASE]);
+  }, []);
+
+  useEffect(() => {
+    fetchZones();
+  }, [filter, fetchZones]);
 
   const generateDemoZones = () => {
     const zones = [];
