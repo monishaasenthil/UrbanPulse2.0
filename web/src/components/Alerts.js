@@ -7,10 +7,6 @@ function Alerts() {
   const [alerts, setAlerts] = useState([]);
   const [filter, setFilter] = useState('all');
 
-  useEffect(() => {
-    fetchAlerts();
-  }, [filter, fetchAlerts]);
-
   const fetchAlerts = useCallback(async () => {
     try {
       const response = await fetch(`${API_BASE}/alerts`);
@@ -21,6 +17,10 @@ function Alerts() {
       setAlerts(generateDemoAlerts());
     }
   }, []);
+
+  useEffect(() => {
+    fetchAlerts();
+  }, [filter, fetchAlerts]);
 
   const generateDemoAlerts = () => {
     const types = ['high_risk', 'elevated_risk', 'heavy_rain', 'incident_cluster', 'hospital_proximity'];
